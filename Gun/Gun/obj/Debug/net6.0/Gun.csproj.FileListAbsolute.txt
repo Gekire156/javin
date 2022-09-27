@@ -1,0 +1,5 @@
+/Users/s10000589/Desktop/Sonny/Gun/Gun/obj/Debug/net6.0/Gun.csproj.AssemblyReference.cache
+/Users/s10000589/Desktop/Sonny/Gun/Gun/obj/Debug/net6.0/Gun.GeneratedMSBuildEditorConfig.editorconfig
+/Users/s10000589/Desktop/Sonny/Gun/Gun/obj/Debug/net6.0/Gun.AssemblyInfoInputs.cache
+/Users/s10000589/Desktop/Sonny/Gun/Gun/obj/Debug/net6.0/Gun.AssemblyInfo.cs
+/Users/s10000589/Desktop/Sonny/Gun/Gun/obj/Debug/net6.0/Gun.csproj.CoreCompileInputs.cache
