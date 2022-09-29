@@ -13,8 +13,8 @@ public class Gun : MonoBehaviour
     int _currentAmmoInClip;
     int _ammoInReserve;
 
-    public Image muzzleflashImage;
-    public Sprite[] flashes;
+    //public Image muzzleflashImage;
+    //public Sprite[] flashes;
 
     public Vector3 normalLocalPosition;
     public Vector3 aimingLocalPosition;
@@ -85,21 +85,41 @@ public class Gun : MonoBehaviour
 
         Vector3 desiredPosition = Vector3.Lerp(transform.localPosition, target, TimeOnly.deltaTime * aimSmoothing);
 
-        transform.localPosition = 
+        transform.localPosition = desiredPosition;
     }
 
     IEnumerator ShootGun()
     {
+        //StartCoroutine(Muzzleflash());
+
+        RayCastForEnemy();
+
         yield return new WaitForSeconds(fireRate);
         _canShoot = true;
     }
 
-    IEnumerator Muzzleflash()
+    //IEnumerator Muzzleflash()
+    //{
+        //muzzleFlashImage.sprite = flashes[Random.Range(0, flashes.length)];
+        //muzzleFlashImage.color = Color.White;
+        //yield return new WaitForSeconds(0.05f);
+        //muzzleFlashImage.sprite = null;
+       // muzzleFlashImage.color = new ConsoleColor(0, 0, 0, 0);
+    //}
+
+    void RayCastForEnemy()
     {
-        muzzleFlashImage.sprite = flashes[Random.Range(0, flashes.length)];
-        muzzleFlashImage.color = Color.White;
-        yield return new WaitForSeconds(0.05f);
-        muzzleFlashImage.sprite = null;
-        muzzleFlashImage.color = new ConsoleColor(0, 0, 0, 0);
+        RaycastHit hit;
+        if(Physics.Raycast(transform.parent.position, transform.parent.forward, out hit, 1 << LayerMask.NameToLayer("Enemy")))
+        {
+            try
+            {
+                Debug.log("Hit an enemy");
+                RigidBody rb = hit.transform.GetComponent<RigidBody>();
+                rb.constraints = RigidBodyConstraints.None;
+                rb.AddForce(transform.parent.transform.forward * 250);
+            }
+            catch { }
+        }
     }
 }
