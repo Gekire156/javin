@@ -1,0 +1,51 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class playerController : MonoBehaviour
+{
+    public Vector2 turn;
+    //public Vector3 deltaMove;
+    //private float speed = .5f;
+    private float horizontalInput;
+    private float forwardInput;
+    public GameObject enemy;
+    public GameObject mover;
+    public Rigidbody Rigid;
+    public Vector3 movement;
+    //public float sensitivity = 100000f;
+    //[SerializeField] private Camera mainCamera;
+    void Start()
+    {
+
+    }
+    /*private void Awake ()
+    {
+    /*if(!mainCamera) {
+        mainCamera = Camera.main;
+    }
+        movement = mainCamera.transform.right * Input.GetAxis("Horizontal") + mainCamera.transform.forward * Input.GetAxis("Vertical"); 
+    }
+    void Update()
+    {
+        transform.position += movement;
+        //Movement
+        //Rigid.MovePosition(transform.position + (transform.forward * Input.GetAxis("Vertical") * speed) + (transform.right * Input.GetAxis("Horizontal") * speed));
+        //transform.position += transform.forward * Input.GetAxis("Vertical") * speed;
+        //transform.position += transform.right * Input.GetAxis("Horizontal") * speed;
+        //horizontalInput = Input.GetAxis("Horizontal");
+        //forwardInput = Input.GetAxis("Vertical");
+        //transform.Translate(Vector3.forward * Time.deltaTime * speed * forwardInput);
+        //transform.Translate(Vector3.right * Time.deltaTime * speed * horizontalInput);
+
+        //Turning
+
+        //transform.eulerAngles += sensitivity * new Vector3( x: -Input.GetAxis("Mouse Y"), y: Input.GetAxis("Mouse X"), z: 0);
+
+        //turn.x += Input.GetAxis("Mouse X") * sensitivity;
+        //turn.y += Input.GetAxis("Mouse Y") * sensitivity;
+        //transform.localRotation = Quaternion.Euler(0, turn.x, 0);
+        //transform.localRotation = Quaternion.Euler(-turn.y, 0, 0);
+    }
+    */
+}

@@ -1,6 +1,6 @@
 ﻿using System.Numerics;
 using UnityEngine;
-using UnityEngine.Ui;
+using UnityEngine.UI;
 
 public class Gun : MonoBehaviour
 {
@@ -69,7 +69,7 @@ public class Gun : MonoBehaviour
 
         _currentRotation.Y = Math.Clamp(_currentRotation.Y, -90, 90);
 
-        transform.localPosition += (Vector3)mouseAxis * weaponSwayAmount / 1000;
+        //transform.localPosition += (Vector3)mouseAxis * weaponSwayAmount / 1000;
 
         transform.root.localRotation = Quaternion.AngleAxis(_currentRotation.X, Vector3.up);
         transform.parent.localRotation = Quaternion.AngleAxis(-_currentRotation.Y, Vector3.right);
@@ -98,14 +98,14 @@ public class Gun : MonoBehaviour
         _canShoot = true;
     }
 
-    //IEnumerator Muzzleflash()
-    //{
-        //muzzleFlashImage.sprite = flashes[Random.Range(0, flashes.length)];
-        //muzzleFlashImage.color = Color.White;
-        //yield return new WaitForSeconds(0.05f);
-        //muzzleFlashImage.sprite = null;
-       // muzzleFlashImage.color = new ConsoleColor(0, 0, 0, 0);
-    //}
+    IEnumerator Muzzleflash()
+    {
+        muzzleFlashImage.sprite = flashes[Random.Range(0, flashes.length)];
+        muzzleFlashImage.color = Color.White;
+        yield return new WaitForSeconds(0.05f);
+        muzzleFlashImage.sprite = null;
+        muzzleFlashImage.color = new ConsoleColor(0, 0, 0, 0);
+    }
 
     void RayCastForEnemy()
     {
