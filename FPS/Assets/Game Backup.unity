@@ -385,7 +385,7 @@ GameObject:
   - component: {fileID: 748373942}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -650,6 +650,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Rifle_00
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 129f0ad0f238ef349aef1e050de95f49, type: 3}
+      propertyPath: m_TagString
+      value: gun
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 129f0ad0f238ef349aef1e050de95f49, type: 3}
 --- !u!1 &963194225
@@ -850,8 +854,8 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
+  m_Constraints: 84
+  m_CollisionDetection: 1
 --- !u!114 &971564605
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -865,6 +869,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyHealth: 100
+  speed: 5
+  player: {fileID: 748373941}
+  enemy: {fileID: 971564599}
 --- !u!1 &1324106669
 GameObject:
   m_ObjectHideFlags: 0
@@ -953,7 +960,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!4 &1432600951 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: d9ab20c0dc3d4114ea1ff1b373d18711, type: 3}
@@ -984,6 +991,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 63c83b9180ad3417cb91a8e780462c0d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 748373936}
 --- !u!1 &1435651941
 GameObject:
   m_ObjectHideFlags: 0
@@ -1121,7 +1129,6 @@ GameObject:
   - component: {fileID: 1989560278}
   - component: {fileID: 1989560277}
   - component: {fileID: 1989560276}
-  - component: {fileID: 1989560275}
   m_Layer: 0
   m_Name: Ground
   m_TagString: ground
@@ -1129,20 +1136,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!64 &1989560275
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1989560274}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!64 &1989560276
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -1216,7 +1209,7 @@ Transform:
   m_GameObject: {fileID: 1989560274}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 3, y: 1, z: 3}
+  m_LocalScale: {x: 100, y: 1, z: 100}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}

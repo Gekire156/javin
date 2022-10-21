@@ -24,7 +24,7 @@ public class PlayerMovement : MonoBehaviour
     public GameObject bullet;
 
     public int ammoCount = 30;
-    public float firerate = 50;
+    public float firerate = 5;
 
     Rigidbody firedBulletRB;
 
@@ -40,6 +40,8 @@ public class PlayerMovement : MonoBehaviour
 
     bool isOnGround;
 
+    bool canFire;
+
 
     // Start is called before the first frame update
     void Start()
@@ -47,7 +49,7 @@ public class PlayerMovement : MonoBehaviour
         playerRB = GetComponent<Rigidbody>();
         bullet.SetActive(false);
 
-        
+        canFire = true;
 
         isOnGround = true;
     }
@@ -72,10 +74,10 @@ public class PlayerMovement : MonoBehaviour
     IEnumerator Shoot()
     {
 
-        if(ammoCount > 0 && Input.GetKey(KeyCode.Mouse0))
+        if(ammoCount > 0 && Input.GetKey(KeyCode.Mouse0) && canFire)
         {
 
-
+            canFire = false;
             firedBullet = Instantiate(bullet.gameObject);
 
             Physics.IgnoreCollision(this.GetComponent<Collider>(), firedBullet.GetComponent<Collider>());
@@ -87,9 +89,11 @@ public class PlayerMovement : MonoBehaviour
             firedBullet.transform.eulerAngles = gunRotation;
             firedBullet.transform.position = gunPosition;
 
-            firedBulletRB.AddForce(firedBulletRB.transform.forward * 200, ForceMode.Impulse);
+            firedBulletRB.AddForce(firedBulletRB.transform.forward * 35, ForceMode.Impulse);
             Destroy(firedBullet, 1);
+
             yield return new WaitForSeconds(firerate);
+            canFire = true;
         }
 
 
