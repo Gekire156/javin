@@ -17,7 +17,7 @@ public class PlayerMovement : MonoBehaviour
     Vector2 currentRotation;
     private Rigidbody playerRB;
 
-    public int jumpForce = 5;
+    public int jumpForce = 50;
 
     public int speed = 5;
 
@@ -73,13 +73,13 @@ public class PlayerMovement : MonoBehaviour
 
         StartCoroutine(Shoot());
         Movement();
-        
+
     }
 
     IEnumerator Shoot()
     {
 
-        if(ammoCount > 0 && Input.GetKey(KeyCode.Mouse0) && canFire)
+        if (ammoCount > 0 && Input.GetKey(KeyCode.Mouse0) && canFire)
         {
 
             canFire = false;
@@ -133,9 +133,10 @@ public class PlayerMovement : MonoBehaviour
         transform.Translate(Vector3.forward * Time.deltaTime * vertical * speed);
         transform.Translate(Vector3.right * Time.deltaTime * horizontal * speed);
 
-        
-        if(Input.GetKeyDown(KeyCode.Space) && isOnGround)
+
+        if (Input.GetKeyDown(KeyCode.Space) && isOnGround)
         {
+            print("space is pressed");
             playerRB.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
             isOnGround = false;
         }
@@ -143,7 +144,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if(collision.gameObject.tag == "ground")
+        if ((collision.gameObject.tag == "ground") || (collision.gameObject.tag == "rock")) 
         {
             isOnGround = true;
         }
