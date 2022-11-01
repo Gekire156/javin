@@ -6,11 +6,11 @@
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Enemy.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Bullet.cs">
     <Files>
       <File FileName="Assets/Scripts/PlayerMovement.cs" Line="93" Column="37" />
       <File FileName="Assets/Scripts/Enemy.cs" Line="45" Column="28" />
-      <File FileName="Assets/Scripts/Bullet.cs" Line="44" Column="10" />
+      <File FileName="Assets/Scripts/Bullet.cs" Line="1" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
