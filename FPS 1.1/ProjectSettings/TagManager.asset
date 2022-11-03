@@ -9,6 +9,7 @@ TagManager:
   - Enemy
   - player
   - gun
+  - rock
   layers:
   - Default
   - TransparentFX

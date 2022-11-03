@@ -2,6 +2,8 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -44,6 +46,15 @@ public class PlayerMovement : MonoBehaviour
 
     bool canFire;
 
+    private bool reload;
+
+    //public Text ammoDisplay;
+    public TMP_Text ammoDisplay;
+    public TMP_Text ammoLabel;
+    public TMP_Text reloadText;
+    public TMP_Text reloadingText;
+
+
 
     // Start is called before the first frame update
     void Start()
@@ -51,15 +62,25 @@ public class PlayerMovement : MonoBehaviour
         playerRB = GetComponent<Rigidbody>();
         bullet.SetActive(false);
 
+        ammoCount = 30;
         canFire = true;
+        reload = false;
 
         isOnGround = true;
+
+        ammoDisplay.gameObject.SetActive(true);
+        ammoLabel.gameObject.SetActive(true);
+        reloadText.gameObject.SetActive(false);
+        reloadingText.gameObject.SetActive(false);
     }
 
     // Update is called once per frame
     void Update()
     {
         Cursor.visible = false;
+
+        ammoDisplay.text = ammoCount.ToString();
+
 
         DetermineRotation();
         playerPosition = transform.position;
@@ -79,30 +100,61 @@ public class PlayerMovement : MonoBehaviour
     IEnumerator Shoot()
     {
 
-        if(ammoCount > 0 && Input.GetKey(KeyCode.Mouse0) && canFire)
+        if(ammoCount > 0 && Input.GetKey(KeyCode.Mouse0) && canFire == true && reload == false)
         {
+            ammoDisplay.gameObject.SetActive(true);
+            ammoLabel.gameObject.SetActive(true);
+            reloadText.gameObject.SetActive(false);
+            reloadingText.gameObject.SetActive(false);
 
             canFire = false;
+            ammoCount --;
             firedBullet = Instantiate(bullet.gameObject);
 
-            Physics.IgnoreCollision(this.GetComponent<Collider>(), firedBullet.GetComponent<Collider>());
-            Physics.IgnoreCollision(firedBullet.GetComponent<Collider>(), firedBullet.GetComponent<Collider>());
+            //Physics.IgnoreCollision(this.GetComponent<Collider>(), firedBullet.GetComponent<Collider>());
+            //Physics.IgnoreCollision(firedBullet.GetComponent<Collider>(), firedBullet.GetComponent<Collider>());
 
             firedBullet.gameObject.SetActive(true);
             firedBulletRB = firedBullet.GetComponent<Rigidbody>();
 
             firedBullet.transform.eulerAngles = gunRotation;
-            //firedBullet.transform.position = gunPosition;
             firedBullet.transform.position = gunBarrelPosition;
 
             firedBulletRB.AddForce(firedBulletRB.transform.forward * 35, ForceMode.Impulse);
             Destroy(firedBullet, 1);
-
             yield return new WaitForSeconds(firerate);
-            canFire = true;
+
+        //Cant Shoot
+            if(ammoCount <= 0){
+                ammoDisplay.gameObject.SetActive(false);
+                ammoLabel.gameObject.SetActive(false);
+                reloadText.gameObject.SetActive(true);
+                reloadingText.gameObject.SetActive(false);
+                canFire = false;
+            }
+        //Can Shoot
+            else{
+                canFire = true;
+            }
         }
+        //Reload
+        else if(Input.GetKeyDown("r")){
+                canFire = false;
+                reload = true;
+                ammoDisplay.gameObject.SetActive(false);
+                ammoLabel.gameObject.SetActive(false);
+                reloadText.gameObject.SetActive(false);
+                reloadingText.gameObject.SetActive(true);
+                yield return new WaitForSeconds(2);
+                reload = false;
+                ammoDisplay.gameObject.SetActive(true);
+                ammoLabel.gameObject.SetActive(true);
+                reloadText.gameObject.SetActive(false);
+                reloadingText.gameObject.SetActive(false);
+                ammoCount = 30;
+                canFire = true;
 
-
+            }
     }
 
     void DetermineRotation()
@@ -143,7 +195,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if(collision.gameObject.tag == "ground")
+        if(collision.gameObject.tag == "ground" || collision.gameObject.tag == "rock")
         {
             isOnGround = true;
         }
