@@ -48,13 +48,15 @@ public class PlayerMovement : MonoBehaviour
 
     private bool reload;
 
+    private bool canReload;
+
     //public Text ammoDisplay;
     public TMP_Text ammoDisplay;
     public TMP_Text ammoLabel;
     public TMP_Text reloadText;
     public TMP_Text reloadingText;
 
-
+    Animator anim;
 
     // Start is called before the first frame update
     void Start()
@@ -65,6 +67,7 @@ public class PlayerMovement : MonoBehaviour
         ammoCount = 30;
         canFire = true;
         reload = false;
+        canReload = true;
 
         isOnGround = true;
 
@@ -72,6 +75,8 @@ public class PlayerMovement : MonoBehaviour
         ammoLabel.gameObject.SetActive(true);
         reloadText.gameObject.SetActive(false);
         reloadingText.gameObject.SetActive(false);
+
+        anim = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -132,20 +137,23 @@ public class PlayerMovement : MonoBehaviour
                 reloadingText.gameObject.SetActive(false);
                 canFire = false;
             }
+            
         //Can Shoot
             else{
                 canFire = true;
             }
         }
         //Reload
-        else if(Input.GetKeyDown("r")){
+        else if(Input.GetKeyDown("r") && canReload == true && ammoCount < 30){
+                anim.SetTrigger("Reload");
                 canFire = false;
                 reload = true;
+                canReload = false;
                 ammoDisplay.gameObject.SetActive(false);
                 ammoLabel.gameObject.SetActive(false);
                 reloadText.gameObject.SetActive(false);
                 reloadingText.gameObject.SetActive(true);
-                yield return new WaitForSeconds(2);
+                yield return new WaitForSeconds(1.75f);
                 reload = false;
                 ammoDisplay.gameObject.SetActive(true);
                 ammoLabel.gameObject.SetActive(true);
@@ -153,6 +161,7 @@ public class PlayerMovement : MonoBehaviour
                 reloadingText.gameObject.SetActive(false);
                 ammoCount = 30;
                 canFire = true;
+                canReload = true;
 
             }
     }

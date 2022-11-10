@@ -28,13 +28,4 @@ public class Bullet : MonoBehaviour
             Destroy(this.gameObject);
         }
     }
-    /*private void OnCollisionEnter(Collision collision)
-    {
-        Destroy(this.gameObject);
-        if (collision.gameObject.TryGetComponent<Enemy>(out Enemy enemycomponent))
-        {
-            enemycomponent.TakeDamage(10);
-            Destroy(this.gameObject);
-        }
-    }*/
 }
