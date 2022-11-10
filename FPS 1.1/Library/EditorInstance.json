@@ -1,6 +1,13 @@
 {
+<<<<<<< HEAD
 	"process_id" : 13745,
 	"version" : "2021.3.9f1",
 	"app_path" : "/Applications/Unity/Unity.app",
 	"app_contents_path" : "/Applications/Unity/Unity.app/Contents"
+=======
+	"process_id" : 1731,
+	"version" : "2021.3.9f1",
+	"app_path" : "/Applications/Unity/Hub/Editor/2021.3.9f1/Unity.app",
+	"app_contents_path" : "/Applications/Unity/Hub/Editor/2021.3.9f1/Unity.app/Contents"
+>>>>>>> 77af62b07badaba0ff0d57de03f049955706e9c1
 }
